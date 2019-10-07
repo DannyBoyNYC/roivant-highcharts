@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Payments by Entity - Highcharts</title>
+
+    <style type="text/css"></style>
+  </head>
+  <body>
+    <script src="../../code/highcharts.js"></script>
+    <script src="../../code/modules/exporting.js"></script>
+    <script src="../../code/modules/export-data.js"></script>
+
+    <div
+      id="container"
+      style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"
+    ></div>
+
+    <div
+      id="pie"
+      style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"
+    ></div>
+
+    <script type="text/javascript">
+      Highcharts.chart('pie', {
+        chart: {
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false,
+          type: 'pie',
+        },
+        title: {
+          text: 'Number of Entities',
+        },
+        tooltip: {
+          pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
+        },
+        plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+              enabled: true,
+              format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+            },
+          },
+        },
+        series: [
+          {
+            name: 'Entities',
+            colorByPoint: true,
+            data: [
+              {
+                name: 'Physicians',
+                y: 627000,
+                sliced: true,
+                selected: true,
+              },
+              {
+                name: 'Hospitals',
+                y: 1180,
+              },
+              {
+                name: 'Companies',
+                y: 1582,
+              },
+            ],
+          },
+        ],
+      });
+    </script>
+
+    <script type="text/javascript">
+      Highcharts.chart('container', {
+        chart: {
+          type: 'bar',
+        },
+        title: {
+          text: 'Payments by Entity',
+        },
+        subtitle: {
+          text:
+            'Source: <a href="https://openpaymentsdata-origin.cms.gov">CMS.gov</a>',
+        },
+        xAxis: {
+          categories: ['General Payments', 'Research Payments'],
+          title: {
+            text: null,
+          },
+        },
+        yAxis: {
+          min: 0,
+          title: {
+            text: 'Payments (usd)',
+            align: 'high',
+          },
+          labels: {
+            overflow: 'justify',
+          },
+        },
+        tooltip: {
+          valueSuffix: ' dollars',
+        },
+        plotOptions: {
+          bar: {
+            dataLabels: {
+              enabled: true,
+            },
+          },
+        },
+        legend: {
+          layout: 'vertical',
+          align: 'right',
+          verticalAlign: 'top',
+          x: -40,
+          y: 80,
+          floating: true,
+          borderWidth: 1,
+          backgroundColor:
+            Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
+          shadow: true,
+        },
+        credits: {
+          enabled: false,
+        },
+        series: [
+          {
+            name: 'Physicians',
+            data: [2170000000, 84290000],
+          },
+          {
+            name: 'Hospitals',
+            data: [83194000, 1210000000],
+          },
+          {
+            name: 'Companies',
+            data: [3000000000, 4930000000],
+          },
+        ],
+      });
+    </script>
+  </body>
+</html>
